@@ -1,0 +1,5 @@
+package io.speclens.model;
+
+public enum RuleType {
+    REQUIRED, FORMAT, LENGTH, RANGE, ALLOWED_VALUES, VISIBILITY, ENABLEMENT, DEFAULT_VALUE, CROSS_FIELD
+}

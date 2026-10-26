@@ -1,0 +1,8 @@
+target/
+speclens-out/
+# Playwright storage state holds live session cookies.
+auth.json
+*.storage.json
+.idea/
+.vscode/
+*.iml

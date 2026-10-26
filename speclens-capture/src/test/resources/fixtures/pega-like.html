@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portal</title>
+<style>
+  body { font-family: sans-serif; margin: 20px; }
+  iframe { width: 900px; height: 700px; border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+<!-- Mimics a Pega portal: the case is rendered inside an iframe, ids are generated,
+     labels carry the "required" marker, and property names are $P-encoded. -->
+<h1>Case Worker Portal</h1>
+<iframe name="PegaGadget0Ifr" srcdoc='
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  body { font-family: sans-serif; }
+  .field-item { margin: 8px 0; }
+  .custom-check input { opacity: 0; position: absolute; }
+  .custom-check span { display: inline-block; padding: 2px 6px; border: 1px solid #999; }
+  [role=listbox] { border: 1px solid #999; padding: 4px; }
+  [hidden] { display: none; }
+</style>
+</head><body>
+<h2>Submission Details</h2>
+
+<div class="field-item">
+  <label for="a1b2c3" class="field-caption dataLabelForWrite labelRequired">Policy number</label>
+  <input id="a1b2c3" name="$PpyWorkPage$pPolicyNumber" type="text" maxlength="10" pattern="[0-9]{10}" data-test-id="202401011200PolicyNo">
+</div>
+
+<div class="field-item">
+  <label for="d4e5f6" class="field-caption dataLabelForWrite">Effective date</label>
+  <span data-ctl="[&amp;quot;DatePicker&amp;quot;]"><input id="d4e5f6" name="$PpyWorkPage$pEffectiveDate" type="text" value="01/11/2026"></span>
+</div>
+
+<div class="field-item">
+  <label>Line of business <select name="$PpyWorkPage$pLOB" required>
+    <option value="">Select...</option>
+    <option value="AUTO">Auto</option>
+    <option value="HOME" selected>Home</option>
+    <option value="LIFE">Life</option>
+  </select></label>
+</div>
+
+<table><tr>
+  <td><span>Annual premium *</span></td>
+  <td><input name="$PpyWorkPage$pPremium" type="number" min="0" max="1000000"></td>
+</tr></table>
+
+<div class="field-item">
+  <span id="brokerLbl">Broker</span>
+  <div role="combobox" aria-labelledby="brokerLbl" aria-controls="brokerList" aria-expanded="false" tabindex="0"
+       onclick="var l=document.getElementById(&apos;brokerList&apos;); l.hidden=!l.hidden; this.setAttribute(&apos;aria-expanded&apos;, String(!l.hidden));"
+       onkeydown="if(event.key===&apos;Escape&apos;){document.getElementById(&apos;brokerList&apos;).hidden=true;}"
+       style="border:1px solid #999; width:200px; padding:4px;">Choose broker</div>
+  <div id="brokerList" role="listbox" hidden>
+    <div role="option">Acme Brokers</div>
+    <div role="option">Northwind Insurance</div>
+    <div role="option">Contoso Risk</div>
+  </div>
+</div>
+
+<!-- react-select style widgets: label six levels up, placeholder rendered as a sibling,
+     and the disabled one hides its input with visibility:hidden. -->
+<div class="row">
+  <div class="col"><label>Region and Office</label></div>
+  <div class="col"><div class="container"><span aria-live="polite"></span>
+    <div class="control"><div class="value-container">
+      <div class="select__placeholder" id="ph-region">Select Region</div>
+      <div class="input-container"><div><input id="react-select-3-input" role="combobox" aria-describedby="ph-region" type="text"></div></div>
+    </div></div>
+  </div></div>
+  <div class="col"><div class="container" style="width:200px">
+    <div class="control" aria-disabled="true" style="border:1px solid #ccc; padding:4px;"><div class="value-container">
+      <div class="select__placeholder" id="ph-office">Select Office</div>
+      <div class="input-container" style="visibility:hidden"><input id="react-select-4-input" role="combobox" aria-describedby="ph-office" type="text" disabled></div>
+    </div></div>
+  </div></div>
+</div>
+
+<div class="row">
+  <div class="col"><label>Contact email</label></div>
+  <div class="col"><div><div><input id="contactEmail" type="email"></div></div></div>
+</div>
+
+<!-- nopCommerce / ASP.NET style: caption inside the radio container, marker after the input,
+     validation rules declared as data-val-* attributes, navigation links next to a field. -->
+<div class="inputs">
+  <label>Gender:</label>
+  <div><input id="gender-male" name="Gender" type="radio" value="M"><label for="gender-male">Male</label></div>
+  <div><input id="gender-female" name="Gender" type="radio" value="F"><label for="gender-female">Female</label></div>
+</div>
+<div class="inputs">
+  <label for="Pwd">Password:</label>
+  <input id="Pwd" name="Password" type="password" data-val="true" data-val-required="Password is required."
+         data-val-length="Must be 6 to 20 characters." data-val-length-min="6" data-val-length-max="20">
+  <span class="required">*</span>
+</div>
+<div class="inputs">
+  <label for="Ref">Reference:</label>
+  <input id="Ref" name="Reference" type="text"><span class="required">*</span>
+</div>
+<div class="header">
+  <ul><li><a href="#">Register</a></li><li><a href="#">Log in</a></li></ul>
+  <input type="text" name="q" value="Search store">
+</div>
+
+<fieldset>
+  <legend>Payment frequency</legend>
+  <label><input type="radio" name="$PpyWorkPage$pFrequency" value="M" checked> Monthly</label>
+  <label><input type="radio" name="$PpyWorkPage$pFrequency" value="A"> Annual</label>
+</fieldset>
+
+<div class="field-item custom-check">
+  <label><input type="checkbox" name="$PpyWorkPage$pPaperless"><span>Paperless billing</span></label>
+</div>
+
+<div class="field-item">
+  <label for="z9" class="field-caption dataLabelForWrite">Notes</label>
+  <textarea id="z9" name="$PpyWorkPage$pNotes" maxlength="500" readonly>Imported</textarea>
+</div>
+
+<div>
+  <button type="button" data-test-id="2024btnCancel">Cancel</button>
+  <button type="button" disabled>Save</button>
+  <button type="button">Submit</button>
+</div>
+</body></html>
+'></iframe>
+</body>
+</html>

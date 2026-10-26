@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1",
+  "screens": [
+    {
+      "id": "register", "url": "https://shop.example/register", "heading": "Register",
+      "fields": [
+        {"id": "f001", "kind": "INPUT", "role": "textbox", "label": "Search", "labelSource": "ARIA_LABEL", "labelConfidence": "HIGH", "locator": "[name=\"q\"]", "evidence": []},
+        {"id": "f002", "kind": "INPUT", "role": "textbox", "inputType": "text", "name": "Email", "label": "Email", "labelSource": "LABEL_FOR", "labelConfidence": "HIGH",
+         "required": true, "requiredSource": "data-val-required: \"Email is required.\"",
+         "validations": [{"rule": "required", "message": "Email is required.", "params": {}}, {"rule": "email", "message": "Wrong email", "params": {}}],
+         "locator": "role=textbox[name=\"Email\"]", "evidence": []},
+        {"id": "f003", "kind": "INPUT", "role": "textbox", "inputType": "password", "name": "Password", "label": "Password", "labelSource": "LABEL_FOR", "labelConfidence": "HIGH",
+         "validations": [{"rule": "length", "message": "At least 6 characters.", "params": {"min": "6", "max": "20"}}], "evidence": []},
+        {"id": "f004", "kind": "INPUT", "role": "textbox", "inputType": "password", "name": "ConfirmPassword", "label": "Confirm password", "labelSource": "LABEL_FOR", "labelConfidence": "HIGH",
+         "validations": [{"rule": "equalto", "message": "Passwords do not match.", "params": {"other": "*.Password"}}], "evidence": []},
+        {"id": "f005", "kind": "CHOICE", "role": "combobox", "label": "Country", "labelSource": "NEAREST_TEXT", "labelConfidence": "LOW",
+         "options": [{"value": "", "label": "Select...", "selected": true}, {"value": "IN", "label": "India", "selected": false}, {"value": "UK", "label": "United Kingdom", "selected": false}],
+         "defaultValue": "Select...", "evidence": []},
+        {"id": "f006", "kind": "ACTION", "role": "button", "label": "Register", "labelSource": "OWN_TEXT", "labelConfidence": "HIGH", "disabled": true, "locator": "role=button[name=\"Register\"]", "evidence": []}
+      ]
+    },
+    {
+      "id": "login", "url": "https://shop.example/login", "heading": "Sign in",
+      "fields": [
+        {"id": "f001", "kind": "INPUT", "role": "textbox", "label": "Search", "labelSource": "ARIA_LABEL", "labelConfidence": "HIGH", "locator": "[name=\"q\"]", "evidence": []},
+        {"id": "f002", "kind": "INPUT", "role": "textbox", "inputType": "password", "label": "Password", "labelSource": "LABEL_FOR", "labelConfidence": "HIGH", "evidence": []},
+        {"id": "f003", "kind": "ACTION", "role": "button", "label": "Log in", "labelSource": "OWN_TEXT", "labelConfidence": "HIGH", "locator": "role=button[name=\"Log in\"]", "evidence": []}
+      ]
+    }
+  ]
+}
