@@ -27,7 +27,8 @@ final class LoginCommand implements Callable<Integer> {
                 defaults.viewportWidth(), defaults.viewportHeight());
         try (BrowserSession session = BrowserSession.open(options)) {
             session.page().navigate(url);
-            Console.waitForEnter("Sign in in the browser window, then press Enter here to save the session.");
+            Console.waitForEnter("Sign in in the browser window, then press Enter here to save the session.",
+                    storageState.toAbsolutePath().resolveSibling(".speclens-ready"));
             session.saveStorageState(storageState);
         }
         System.out.println("Saved session to " + storageState.toAbsolutePath()

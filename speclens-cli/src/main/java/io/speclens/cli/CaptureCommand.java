@@ -88,7 +88,8 @@ final class CaptureCommand implements Callable<Integer> {
                 return 1;
             }
             if (interactive) {
-                Console.waitForEnter("Go to the screen you want in the browser window, then press Enter here to capture it.");
+                Console.waitForEnter("Go to the screen you want in the browser window, then press Enter here to capture it.",
+                        outDir.resolve(".speclens-ready"));
             }
             screen = new ScreenCapturer(options, System.out::println).capture(session, outDir, screenName);
         }
